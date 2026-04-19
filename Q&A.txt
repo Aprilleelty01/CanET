@@ -1,0 +1,149 @@
+Hope you can find the answers to common setup and usage questions here.
+Thank you for trying this app.
+
+Q1. Which platform or editor should I use?
+Ans:
+Visual Studio Code is the easiest choice for this project.
+You can also use a terminal directly, as long as you activate the correct Python environment.
+
+=======================================
+
+Q2. I get an error like “File does not exist: app.py”. What happened?
+Ans:
+You are probably in the wrong folder.
+
+1. Check your current folder:
+```bash
+pwd
+ls
+```
+
+2. Make sure you can see files such as `app.py`, `backend/`, and `webpage/`.
+
+3. If not, move into the project root first:
+```bash
+cd /path/to/your/project
+```
+
+=======================================
+ 
+Q3. How do I run the Streamlit web app?
+Ans:
+
+Press launch_webpage.command
+
+OR
+
+From the project root:
+```bash
+python -m streamlit run app.py
+```
+
+If your environment is split between system Python and a virtual environment, use:
+```bash
+./venv/bin/python -m streamlit run app.py
+```
+
+=======================================
+
+Q4. How do I run the backend API?
+Ans:
+From the project root:
+```bash
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+```
+
+=======================================
+
+Q5. How do I launch the desktop web setup quickly?
+Ans:
+Use the launcher in the project root:
+```bash
+NO_OPEN_BROWSER=1 ./launch_webpage.command desktop
+```
+
+To stop it:
+```bash
+./launch_webpage.command stop
+```
+
+=======================================
+
+Q6. How do I test whether speech-to-text is working?
+Ans:
+Run the self-test script in the project root:
+```bash
+./stt_selftest.sh
+```
+
+It checks backend health, STT health, and a sample upload to `/speech_to_text`.
+
+
+=======================================
+
+Q7. Why does the web app still show STT while mobile does not?
+Ans:
+
+The STT is added for webpage to facilitate those who don't know how to type Chinese on the computer.
+The mobile app is designed to be used on mobile or tablet. The hardware of users - whether it is iOS or android, already have STT function built into their computer, therefore STT button is not necessary
+
+=======================================
+
+Q8. What backend address should I use on different devices?
+Ans:
+- Android emulator: `http://10.0.2.2:8000`
+- iOS simulator: `http://127.0.0.1:8000`
+- Physical phone: use your Mac LAN IP, for example `http://192.168.x.x:8000`
+
+=======================================
+
+Q9. My translation result looks wrong. What should I check?
+Ans:
+Check these in order:
+1. The chosen translation route in the web app.
+2. Whether the local dictionary found an exact or fuzzy match.
+3. Whether feedback history already trained the small random forest route picker.
+4. Whether the input is simplified Chinese and needs conversion.
+
+=======================================
+
+Q10. Why do I sometimes get no transcript from STT?
+Ans:
+The audio may be too quiet, too noisy, or too short.
+Try recording closer to the microphone in a quieter place.
+
+=======================================
+
+Q11. Where are my local data files stored?
+Ans:
+The project stores its data locally in files such as:
+- `history.csv`
+- `user_feedback.csv`
+- `rf_model.pkl`
+- `label_encoders.pkl`
+
+=======================================
+
+Q12. Is my data uploaded to the cloud?
+Ans:
+No. The app keeps feedback and model files locally in the project folder.
+
+=======================================
+
+Q13. Can I store API keys in the repo?
+Ans:
+No. Use environment variables or `.streamlit/secrets.toml` instead.
+
+=======================================
+
+Q14. What if the backend does not start?
+Ans:
+Check that port 8000 is free and that you are running from the project root.
+If you use a virtual environment, make sure the same environment is active for both Streamlit and uvicorn.
+
+=======================================
+
+Q15. What if the web page does not open automatically?
+Ans:
+That can happen when `NO_OPEN_BROWSER=1` is set.
+Open the URL shown in the terminal manually.
