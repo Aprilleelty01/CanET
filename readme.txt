@@ -1,9 +1,9 @@
-Cantonese to English Translator
+Cantonese to English Translator (CanET)
 ================================
 
 The Hong Kong Polytechnic University
-LST BALT+AIDA Capstone project
-Author: April Lee (class of 2026)
+LST/CBS BALT+AIDA Capstone project
+Author: A Lee (class of 2026)
 
 Project overview
 ----------------
